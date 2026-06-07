@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>IS AUTO Odessa</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+
+<body>
+  <main class="app">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <button class="icon-button back-button" data-action="back" aria-label="Назад">
+        ←
+      </button>
+
+      <div class="logo" data-screen-link="home">
+        <span class="logo-red">IS</span>
+        <span class="logo-black">AUTO</span>
+        <span class="logo-city">ODESSA</span>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-button theme-toggle" aria-label="Сменить тему">
+          ◐
+        </button>
+
+        <button class="icon-button menu-toggle" aria-label="Меню">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- HOME SCREEN -->
+    <section class="screen active" id="home-screen" data-screen="home">
+
+      <section class="hero-card animated-card">
+        <div class="hero-info">
+          <p class="eyebrow">Авто недели</p>
+          <h1 id="hero-car-title">BMW X5</h1>
+          <p id="hero-car-meta">2020 • 30 000 км</p>
+          <strong id="hero-car-price">$59 900</strong>
+        </div>
+
+        <img
+          id="hero-car-image"
+          class="hero-car"
+          src="https://pngimg.com/uploads/bmw/bmw_PNG99558.png"
+          alt="BMW X5"
+        />
+
+        <div class="hero-actions">
+          <button class="outline-button" data-action="open-current-car">
+            Смотреть
+            <span>→</span>
+          </button>
+
+          <button class="ghost-button" data-action="favorite-current">
+            ♡
+          </button>
+        </div>
+
+        <div class="slider-dots" id="hero-dots">
+          <button class="dot active" data-slide="0" aria-label="Слайд 1"></button>
+          <button class="dot" data-slide="1" aria-label="Слайд 2"></button>
+          <button class="dot" data-slide="2" aria-label="Слайд 3"></button>
+          <button class="dot" data-slide="3" aria-label="Слайд 4"></button>
+        </div>
+      </section>
+
+      <section class="search-row animated-card">
+        <label class="search-box">
+          <span>⌕</span>
+          <input
+            id="home-search"
+            type="text"
+            placeholder="Поиск автомобиля"
+            autocomplete="off"
+          />
+        </label>
+
+        <button class="filter-button" data-screen-link="filters">
+          <span>☷</span>
+          Фильтры
+        </button>
+      </section>
+
+      <section class="services">
+        <button class="service-card animated-card" data-screen-link="catalog">
+          <span class="service-icon">▱</span>
+          <strong>Каталог авто</strong>
+          <small>В наличии</small>
+        </button>
+
+        <button class="service-card animated-card" data-screen-link="sell">
+          <span class="service-icon">⌘</span>
+          <strong>Продать авто</strong>
+          <small>Быстро и выгодно</small>
+        </button>
+
+        <button class="service-card animated-card" data-screen-link="tradein">
+          <span class="service-icon">⇄</span>
+          <strong>Трейд-ин</strong>
+          <small>Обменяйте авто</small>
+        </button>
+
+        <button class="service-card animated-card" data-screen-link="selection">
+          <span class="service-icon">⌕</span>
+          <strong>Подбор авто</strong>
+          <small>Найдём лучшее</small>
+        </button>
+      </section>
+
+      <section class="section-block animated-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Подборка</p>
+            <h2>Популярные авто</h2>
+          </div>
+
+          <button class="text-button" data-screen-link="catalog">
+            Все →
+          </button>
+        </div>
+
+        <div class="horizontal-cars" id="popular-cars"></div>
+      </section>
+
+      <section class="about-card animated-card">
+        <div class="about-content">
+          <h2>IS AUTO —</h2>
+          <h3>авто с характером</h3>
+
+          <p>
+            Подбираем, проверяем и доставляем лучшие автомобили для клиентов в Одессе и по всей Украине.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <span>♢</span>
+              <strong>5+ лет</strong>
+              <small>на рынке</small>
+            </div>
+
+            <div class="stat">
+              <span>▱</span>
+              <strong>1000+</strong>
+              <small>авто продано</small>
+            </div>
+
+            <div class="stat">
+              <span>⌖</span>
+              <strong>Одесса</strong>
+              <small>наш дом</small>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- CATALOG SCREEN -->
+    <section class="screen" id="catalog-screen" data-screen="catalog">
+      <section class="screen-title">
+        <p class="eyebrow">Каталог</p>
+        <h1>Авто в наличии</h1>
+      </section>
+
+      <section class="search-row sticky-search">
+        <label class="search-box">
+          <span>⌕</span>
+          <input
+            id="catalog-search"
+            type="text"
+            placeholder="Марка, модель, год"
+            autocomplete="off"
+          />
+        </label>
+
+        <button class="filter-button" data-screen-link="filters">
+          ☷
+        </button>
+      </section>
+
+      <section class="chips-row" id="brand-chips">
+        <button class="chip active" data-brand="all">Все</button>
+        <button class="chip" data-brand="BMW">BMW</button>
+        <button class="chip" data-brand="Mercedes">Mercedes</button>
+        <button class="chip" data-brand="Audi">Audi</button>
+        <button class="chip" data-brand="Porsche">Porsche</button>
+      </section>
+
+      <section class="catalog-list" id="catalog-list"></section>
+
+      <section class="empty-state" id="catalog-empty">
+        <span>⌕</span>
+        <h2>Ничего не найдено</h2>
+        <p>Попробуйте изменить фильтры или поисковый запрос.</p>
+      </section>
+    </section>
+
+    <!-- CAR DETAILS SCREEN -->
+    <section class="screen" id="details-screen" data-screen="details">
+      <section class="details-hero">
+        <button class="favorite-large" data-action="favorite-details">
+          ♡
+        </button>
+
+        <img
+          id="details-image"
+          src=""
+          alt=""
+          class="details-image"
+        />
+      </section>
+
+      <section class="details-card">
+        <p class="eyebrow" id="details-status">В наличии</p>
+
+        <div class="details-title-row">
+          <div>
+            <h1 id="details-title">BMW X5</h1>
+            <p id="details-meta">2020 • 30 000 км</p>
+          </div>
+
+          <strong id="details-price">$59 900</strong>
+        </div>
+
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span>Год</span>
+            <strong id="details-year">2020</strong>
+          </div>
+
+          <div class="spec-item">
+            <span>Пробег</span>
+            <strong id="details-mileage">30 000 км</strong>
+          </div>
+
+          <div class="spec-item">
+            <span>Двигатель</span>
+            <strong id="details-engine">3.0 бензин</strong>
+          </div>
+
+          <div class="spec-item">
+            <span>Привод</span>
+            <strong id="details-drive">xDrive</strong>
+          </div>
+        </div>
+
+        <div class="description-block">
+          <h2>Описание</h2>
+          <p id="details-description">
+            Проверенный автомобиль в отличном состоянии, готов к осмотру и тест-драйву.
+          </p>
+        </div>
+
+        <div class="details-actions">
+          <button class="primary-button" data-screen-link="lead">
+            Оставить заявку
+          </button>
+
+          <button class="outline-button" data-action="call-manager">
+            Позвонить
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <!-- FAVORITES SCREEN -->
+    <section class="screen" id="favorites-screen" data-screen="favorites">
+      <section class="screen-title">
+        <p class="eyebrow">Избранное</p>
+        <h1>Ваши авто</h1>
+      </section>
+
+      <section class="catalog-list" id="favorites-list"></section>
+
+      <section class="empty-state" id="favorites-empty">
+        <span>♡</span>
+        <h2>Пока пусто</h2>
+        <p>Добавляйте автомобили в избранное, чтобы быстро вернуться к ним.</p>
+      </section>
+    </section>
+
+    <!-- FILTERS SCREEN -->
+    <section class="screen" id="filters-screen" data-screen="filters">
+      <section class="screen-title">
+        <p class="eyebrow">Фильтры</p>
+        <h1>Подберите авто</h1>
+      </section>
+
+      <form class="form-card" id="filters-form">
+        <label class="field">
+          <span>Марка</span>
+          <select id="filter-brand">
+            <option value="all">Любая</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Audi">Audi</option>
+            <option value="Porsche">Porsche</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Бюджет до, $</span>
+          <input id="filter-price" type="number" placeholder="70000" />
+        </label>
+
+        <label class="field">
+          <span>Год от</span>
+          <input id="filter-year" type="number" placeholder="2020" />
+        </label>
+
+        <label class="field">
+          <span>Пробег до, км</span>
+          <input id="filter-mileage" type="number" placeholder="50000" />
+        </label>
+
+        <button class="primary-button" type="submit">
+          Показать авто
+        </button>
+
+        <button class="secondary-button" type="button" data-action="reset-filters">
+          Сбросить фильтры
+        </button>
+      </form>
+    </section>
+
+    <!-- SELL SCREEN -->
+    <section class="screen" id="sell-screen" data-screen="sell">
+      <section class="screen-title">
+        <p class="eyebrow">Продажа</p>
+        <h1>Продать авто</h1>
+      </section>
+
+      <form class="form-card lead-form" id="sell-form">
+        <label class="field">
+          <span>Марка и модель</span>
+          <input name="car" type="text" placeholder="Например: BMW X5" required />
+        </label>
+
+        <label class="field">
+          <span>Год выпуска</span>
+          <input name="year" type="number" placeholder="2020" required />
+        </label>
+
+        <label class="field">
+          <span>Пробег</span>
+          <input name="mileage" type="number" placeholder="30000" required />
+        </label>
+
+        <label class="field">
+          <span>Желаемая цена</span>
+          <input name="price" type="text" placeholder="$50 000" />
+        </label>
+
+        <label class="field">
+          <span>Ваш телефон</span>
+          <input name="phone" type="tel" placeholder="+380..." required />
+        </label>
+
+        <button class="primary-button" type="submit">
+          Отправить заявку
+        </button>
+      </form>
+    </section>
+
+    <!-- TRADE-IN SCREEN -->
+    <section class="screen" id="tradein-screen" data-screen="tradein">
+      <section class="screen-title">
+        <p class="eyebrow">Обмен</p>
+        <h1>Trade-in</h1>
+      </section>
+
+      <form class="form-card lead-form" id="tradein-form">
+        <label class="field">
+          <span>Ваш автомобиль</span>
+          <input name="oldCar" type="text" placeholder="BMW X5 2018" required />
+        </label>
+
+        <label class="field">
+          <span>Что хотите взамен</span>
+          <input name="newCar" type="text" placeholder="Mercedes GLE, Audi Q7..." />
+        </label>
+
+        <label class="field">
+          <span>Доплата / бюджет</span>
+          <input name="budget" type="text" placeholder="$20 000" />
+        </label>
+
+        <label class="field">
+          <span>Телефон</span>
+          <input name="phone" type="tel" placeholder="+380..." required />
+        </label>
+
+        <button class="primary-button" type="submit">
+          Рассчитать обмен
+        </button>
+      </form>
+    </section>
+
+    <!-- SELECTION SCREEN -->
+    <section class="screen" id="selection-screen" data-screen="selection">
+      <section class="screen-title">
+        <p class="eyebrow">Подбор</p>
+        <h1>Найдём авто под вас</h1>
+      </section>
+
+      <form class="form-card lead-form" id="selection-form">
+        <label class="field">
+          <span>Бюджет</span>
+          <input name="budget" type="text" placeholder="$50 000 — $80 000" required />
+        </label>
+
+        <label class="field">
+          <span>Какие авто нравятся</span>
+          <input name="cars" type="text" placeholder="BMW, Mercedes, Porsche..." />
+        </label>
+
+        <label class="field">
+          <span>Цель покупки</span>
+          <select name="goal">
+            <option value="daily">На каждый день</option>
+            <option value="family">Для семьи</option>
+            <option value="business">Для бизнеса</option>
+            <option value="premium">Премиум / статус</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Телефон</span>
+          <input name="phone" type="tel" placeholder="+380..." required />
+        </label>
+
+        <button class="primary-button" type="submit">
+          Начать подбор
+        </button>
+      </form>
+    </section>
+
+    <!-- LEAD SCREEN -->
+    <section class="screen" id="lead-screen" data-screen="lead">
+      <section class="screen-title">
+        <p class="eyebrow">Заявка</p>
+        <h1>Связаться с менеджером</h1>
+      </section>
+
+      <form class="form-card lead-form" id="lead-form">
+        <label class="field">
+          <span>Имя</span>
+          <input name="name" type="text" placeholder="Ваше имя" required />
+        </label>
+
+        <label class="field">
+          <span>Телефон</span>
+          <input name="phone" type="tel" placeholder="+380..." required />
+        </label>
+
+        <label class="field">
+          <span>Комментарий</span>
+          <textarea name="comment" rows="4" placeholder="Например: хочу посмотреть BMW X5"></textarea>
+        </label>
+
+        <button class="primary-button" type="submit">
+          Отправить
+        </button>
+      </form>
+    </section>
+
+    <!-- PROFILE SCREEN -->
+    <section class="screen" id="profile-screen" data-screen="profile">
+      <section class="profile-card">
+        <div class="profile-avatar">
+          IS
+        </div>
+
+        <h1>Гость</h1>
+        <p>Telegram Mini App</p>
+
+        <button class="primary-button" data-screen-link="lead">
+          Связаться с IS AUTO
+        </button>
+      </section>
+
+      <section class="menu-list">
+        <button class="menu-row" data-screen-link="favorites">
+          <span>♡</span>
+          Избранное
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="selection">
+          <span>⌕</span>
+          Подбор авто
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="sell">
+          <span>⌘</span>
+          Продать авто
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-action="open-instagram">
+          <span>◎</span>
+          Instagram
+          <b>→</b>
+        </button>
+      </section>
+    </section>
+
+    <!-- SIDE MENU -->
+    <aside class="side-menu" id="side-menu">
+      <div class="side-menu-panel">
+        <div class="side-menu-header">
+          <div class="logo">
+            <span class="logo-red">IS</span>
+            <span class="logo-black">AUTO</span>
+            <span class="logo-city">ODESSA</span>
+          </div>
+
+          <button class="icon-button" data-action="close-menu">
+            ×
+          </button>
+        </div>
+
+        <button class="menu-row" data-screen-link="catalog">
+          Каталог авто
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="selection">
+          Подбор авто
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="sell">
+          Продать авто
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="tradein">
+          Trade-in
+          <b>→</b>
+        </button>
+
+        <button class="menu-row" data-screen-link="favorites">
+          Избранное
+          <b>→</b>
+        </button>
+      </div>
+    </aside>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal" id="success-modal">
+      <div class="modal-card">
+        <button class="modal-close" data-action="close-modal">
+          ×
+        </button>
+
+        <div class="modal-icon">
+          ✓
+        </div>
+
+        <h2>Заявка отправлена</h2>
+
+        <p>
+          Менеджер IS AUTO свяжется с вами в ближайшее время.
+        </p>
+
+        <button class="primary-button" data-action="close-modal">
+          Отлично
+        </button>
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <button class="main-cta" data-screen-link="selection">
+      Подобрать авто
+    </button>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-screen-link="home">
+        <span>⌂</span>
+        Главная
+      </button>
+
+      <button class="nav-item" data-screen-link="catalog">
+        <span>▱</span>
+        Каталог
+      </button>
+
+      <button class="nav-item" data-screen-link="favorites">
+        <span>♡</span>
+        Избранное
+      </button>
+
+      <button class="nav-item" data-screen-link="profile">
+        <span>◎</span>
+        Профиль
+      </button>
+    </nav>
+
+  </main>
+</body>
+</html>
