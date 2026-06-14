@@ -1,612 +1,835 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>IS AUTO Odessa</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>IS AUTO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script defer src="app.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-
 <body>
-  <main class="app">
+
+  <!-- SPLASH -->
+  <div class="splash" id="splash">
+    <div class="splash-bg"></div>
+    <div class="splash-content">
+      <div class="splash-logo">
+        <span class="splash-is">IS</span><span class="splash-auto">AUTO</span>
+      </div>
+      <p class="splash-sub">65 000+ підписників довіряють нам</p>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div class="app" id="app">
+    <div class="safe-top"></div>
 
     <!-- HEADER -->
-    <header class="app-header">
-      <button class="icon-button back-button" data-action="back" aria-label="Назад">
-        ←
+    <header class="header" id="header">
+      <button class="header-back" id="back-btn" aria-label="Назад">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-
-      <div class="logo" data-screen-link="home">
-        <span class="logo-red">IS</span>
-        <span class="logo-black">AUTO</span>
-        <span class="logo-city">ODESSA</span>
+      <div class="header-logo" id="header-logo">
+        <span class="logo-is">IS</span><span class="logo-auto">AUTO</span>
       </div>
-
-      <div class="header-actions">
-        <button class="icon-button theme-toggle" aria-label="Сменить тему">
-          ◐
+      <div class="header-right">
+        <button class="header-icon-btn" id="theme-btn" aria-label="Тема">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
         </button>
-
-        <button class="icon-button menu-toggle" aria-label="Меню">
-          ☰
+        <button class="header-icon-btn" id="share-btn" aria-label="Поділитися" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
       </div>
     </header>
 
-    <!-- HOME SCREEN -->
-    <section class="screen active" id="home-screen" data-screen="home">
+    <!-- SCREENS -->
+    <div class="screens" id="screens">
 
-      <section class="hero-card animated-card">
-        <div class="hero-info">
-          <p class="eyebrow">Авто недели</p>
-          <h1 id="hero-car-title">BMW X5</h1>
-          <p id="hero-car-meta">2020 • 30 000 км</p>
-          <strong id="hero-car-price">$59 900</strong>
-        </div>
+      <!-- ===== HOME ===== -->
+      <section class="screen active" id="screen-home" data-screen="home">
 
-        <img
-          id="hero-car-image"
-          class="hero-car"
-          src="https://pngimg.com/uploads/bmw/bmw_PNG99558.png"
-          alt="BMW X5"
-        />
-
-        <div class="hero-actions">
-          <button class="outline-button" data-action="open-current-car">
-            Смотреть
-            <span>→</span>
-          </button>
-
-          <button class="ghost-button" data-action="favorite-current">
-            ♡
-          </button>
-        </div>
-
-        <div class="slider-dots" id="hero-dots">
-          <button class="dot active" data-slide="0" aria-label="Слайд 1"></button>
-          <button class="dot" data-slide="1" aria-label="Слайд 2"></button>
-          <button class="dot" data-slide="2" aria-label="Слайд 3"></button>
-          <button class="dot" data-slide="3" aria-label="Слайд 4"></button>
-        </div>
-      </section>
-
-      <section class="search-row animated-card">
-        <label class="search-box">
-          <span>⌕</span>
-          <input
-            id="home-search"
-            type="text"
-            placeholder="Поиск автомобиля"
-            autocomplete="off"
-          />
-        </label>
-
-        <button class="filter-button" data-screen-link="filters">
-          <span>☷</span>
-          Фильтры
-        </button>
-      </section>
-
-      <section class="services">
-        <button class="service-card animated-card" data-screen-link="catalog">
-          <span class="service-icon">▱</span>
-          <strong>Каталог авто</strong>
-          <small>В наличии</small>
-        </button>
-
-        <button class="service-card animated-card" data-screen-link="sell">
-          <span class="service-icon">⌘</span>
-          <strong>Продать авто</strong>
-          <small>Быстро и выгодно</small>
-        </button>
-
-        <button class="service-card animated-card" data-screen-link="tradein">
-          <span class="service-icon">⇄</span>
-          <strong>Трейд-ин</strong>
-          <small>Обменяйте авто</small>
-        </button>
-
-        <button class="service-card animated-card" data-screen-link="selection">
-          <span class="service-icon">⌕</span>
-          <strong>Подбор авто</strong>
-          <small>Найдём лучшее</small>
-        </button>
-      </section>
-
-      <section class="section-block animated-card">
-        <div class="section-title-row">
-          <div>
-            <p class="eyebrow">Подборка</p>
-            <h2>Популярные авто</h2>
-          </div>
-
-          <button class="text-button" data-screen-link="catalog">
-            Все →
-          </button>
-        </div>
-
-        <div class="horizontal-cars" id="popular-cars"></div>
-      </section>
-
-      <section class="about-card animated-card">
-        <div class="about-content">
-          <h2>IS AUTO —</h2>
-          <h3>авто с характером</h3>
-
-          <p>
-            Подбираем, проверяем и доставляем лучшие автомобили для клиентов в Одессе и по всей Украине.
-          </p>
-
-          <div class="stats">
-            <div class="stat">
-              <span>♢</span>
-              <strong>5+ лет</strong>
-              <small>на рынке</small>
+        <!-- HERO SLIDER -->
+        <div class="hero-slider" id="hero-slider">
+          <div class="hero-slides" id="hero-slides"></div>
+          <div class="hero-dots" id="hero-dots"></div>
+          <div class="hero-overlay">
+            <div class="hero-info">
+              <span class="hero-badge" id="hero-badge">В наявності</span>
+              <h2 class="hero-title" id="hero-title">BMW X5</h2>
+              <p class="hero-meta" id="hero-meta">2020 · 79 000 км</p>
+              <p class="hero-price" id="hero-price">$45 900</p>
             </div>
-
-            <div class="stat">
-              <span>▱</span>
-              <strong>1000+</strong>
-              <small>авто продано</small>
-            </div>
-
-            <div class="stat">
-              <span>⌖</span>
-              <strong>Одесса</strong>
-              <small>наш дом</small>
+            <div class="hero-actions">
+              <button class="hero-cta" id="hero-open-btn">Дивитися</button>
+              <button class="hero-fav-btn" id="hero-fav-btn" aria-label="В обране">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
             </div>
           </div>
         </div>
-      </section>
-    </section>
 
-    <!-- CATALOG SCREEN -->
-    <section class="screen" id="catalog-screen" data-screen="catalog">
-      <section class="screen-title">
-        <p class="eyebrow">Каталог</p>
-        <h1>Авто в наличии</h1>
-      </section>
-
-      <section class="search-row sticky-search">
-        <label class="search-box">
-          <span>⌕</span>
-          <input
-            id="catalog-search"
-            type="text"
-            placeholder="Марка, модель, год"
-            autocomplete="off"
-          />
-        </label>
-
-        <button class="filter-button" data-screen-link="filters">
-          ☷
-        </button>
-      </section>
-
-      <section class="chips-row" id="brand-chips">
-        <button class="chip active" data-brand="all">Все</button>
-        <button class="chip" data-brand="BMW">BMW</button>
-        <button class="chip" data-brand="Mercedes">Mercedes</button>
-        <button class="chip" data-brand="Audi">Audi</button>
-        <button class="chip" data-brand="Porsche">Porsche</button>
-      </section>
-
-      <section class="catalog-list" id="catalog-list"></section>
-
-      <section class="empty-state" id="catalog-empty">
-        <span>⌕</span>
-        <h2>Ничего не найдено</h2>
-        <p>Попробуйте изменить фильтры или поисковый запрос.</p>
-      </section>
-    </section>
-
-    <!-- CAR DETAILS SCREEN -->
-    <section class="screen" id="details-screen" data-screen="details">
-      <section class="details-hero">
-        <button class="favorite-large" data-action="favorite-details">
-          ♡
-        </button>
-
-        <img
-          id="details-image"
-          src=""
-          alt=""
-          class="details-image"
-        />
-      </section>
-
-      <section class="details-card">
-        <p class="eyebrow" id="details-status">В наличии</p>
-
-        <div class="details-title-row">
-          <div>
-            <h1 id="details-title">BMW X5</h1>
-            <p id="details-meta">2020 • 30 000 км</p>
+        <!-- QUICK SEARCH -->
+        <div class="home-search-wrap">
+          <div class="search-field">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input id="home-search" type="text" placeholder="BMW, Mercedes, Audi..." autocomplete="off" />
           </div>
-
-          <strong id="details-price">$59 900</strong>
-        </div>
-
-        <div class="spec-grid">
-          <div class="spec-item">
-            <span>Год</span>
-            <strong id="details-year">2020</strong>
-          </div>
-
-          <div class="spec-item">
-            <span>Пробег</span>
-            <strong id="details-mileage">30 000 км</strong>
-          </div>
-
-          <div class="spec-item">
-            <span>Двигатель</span>
-            <strong id="details-engine">3.0 бензин</strong>
-          </div>
-
-          <div class="spec-item">
-            <span>Привод</span>
-            <strong id="details-drive">xDrive</strong>
-          </div>
-        </div>
-
-        <div class="description-block">
-          <h2>Описание</h2>
-          <p id="details-description">
-            Проверенный автомобиль в отличном состоянии, готов к осмотру и тест-драйву.
-          </p>
-        </div>
-
-        <div class="details-actions">
-          <button class="primary-button" data-screen-link="lead">
-            Оставить заявку
-          </button>
-
-          <button class="outline-button" data-action="call-manager">
-            Позвонить
+          <button class="filter-pill" data-nav="filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
           </button>
         </div>
+
+        <!-- STATS -->
+        <div class="stats-row">
+          <div class="stat-pill"><strong>65K+</strong><span>підписників</span></div>
+          <div class="stat-pill"><strong>щодня</strong><span>нові авто</span></div>
+          <div class="stat-pill"><strong>@isauto1</strong><span>менеджер</span></div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="section-header"><h3>Послуги</h3></div>
+        <div class="services-grid">
+          <button class="service-card" data-nav="catalog">
+            <div class="service-icon-wrap service-icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <span>Каталог</span>
+          </button>
+          <button class="service-card" data-nav="search-car">
+            <div class="service-icon-wrap service-icon-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            <span>Знайти авто</span>
+          </button>
+          <button class="service-card" data-nav="sell">
+            <div class="service-icon-wrap service-icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+            <span>Продати авто</span>
+          </button>
+          <button class="service-card" data-nav="buyout">
+            <div class="service-icon-wrap service-icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <span>Автовикуп</span>
+          </button>
+        </div>
+
+        <!-- POPULAR CARS -->
+        <div class="section-header">
+          <h3>Популярні авто</h3>
+          <button class="see-all" data-nav="catalog">Всі →</button>
+        </div>
+        <div class="cars-scroll" id="popular-cars"></div>
+
+        <!-- RECENTLY VIEWED -->
+        <div id="recently-viewed-section" style="display:none">
+          <div class="section-header">
+            <h3>Нещодавно переглянуті</h3>
+            <button class="see-all" id="clear-recent-btn">Очистити</button>
+          </div>
+          <div class="cars-scroll" id="recent-cars"></div>
+        </div>
+
+        <!-- BRANDS -->
+        <div class="section-header"><h3>Марки</h3></div>
+        <div class="brands-grid">
+          <button class="brand-card" data-nav="catalog" data-brand="BMW"><span class="brand-name">BMW</span><span class="brand-sub">X3, X5, X6, M-серія</span></button>
+          <button class="brand-card" data-nav="catalog" data-brand="Mercedes"><span class="brand-name">Mercedes</span><span class="brand-sub">A, C, E, GLE класи</span></button>
+          <button class="brand-card" data-nav="catalog" data-brand="Audi"><span class="brand-name">Audi</span><span class="brand-sub">Q5, Q7, A5, RS-серія</span></button>
+          <button class="brand-card" data-nav="catalog" data-brand="Porsche"><span class="brand-name">Porsche</span><span class="brand-sub">Cayenne, Macan</span></button>
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="section-header"><h3>Відгуки клієнтів</h3></div>
+        <div class="reviews-scroll" id="reviews-scroll">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#007aff,#0055d4)">А</div>
+              <div><strong>Андрій К.</strong><div class="review-stars">★★★★★</div></div>
+            </div>
+            <p>Купив BMW X5 через IS AUTO. Все чисто, без сюрпризів. Менеджер допоміг з документами та доставкою. Рекомендую!</p>
+            <span class="review-date">2 тижні тому</span>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#34c759,#248a3d)">О</div>
+              <div><strong>Олена М.</strong><div class="review-stars">★★★★★</div></div>
+            </div>
+            <p>Продала Audi Q7 за 3 дні! Канал реально працює, покупці серйозні. Дякую команді IS AUTO за супровід угоди.</p>
+            <span class="review-date">1 місяць тому</span>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#af52de,#7b2fbe)">В</div>
+              <div><strong>Василь Т.</strong><div class="review-stars">★★★★★</div></div>
+            </div>
+            <p>Шукав Mercedes C43 через #Пошук. За день знайшли 3 варіанти! Взяв найкращий. Сервіс на рівні.</p>
+            <span class="review-date">3 тижні тому</span>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:linear-gradient(135deg,#ff9500,#c97200)">М</div>
+              <div><strong>Максим Д.</strong><div class="review-stars">★★★★☆</div></div>
+            </div>
+            <p>Автовикуп пройшов швидко — оцінили за годину, гроші отримав того ж дня. Ціна трохи нижча ніж хотів, але все чесно.</p>
+            <span class="review-date">1 місяць тому</span>
+          </div>
+        </div>
+
+        <!-- HOW WE CHECK -->
+        <div class="section-header"><h3>Як ми перевіряємо авто</h3></div>
+        <div class="check-steps">
+          <div class="check-step">
+            <div class="check-num">1</div>
+            <div class="check-text"><strong>VIN-перевірка</strong><p>Перевіряємо історію авто по базах США, Європи та України</p></div>
+          </div>
+          <div class="check-step">
+            <div class="check-num">2</div>
+            <div class="check-text"><strong>Технічний огляд</strong><p>Перевірка на СТО: двигун, ходова, кузов, електрика</p></div>
+          </div>
+          <div class="check-step">
+            <div class="check-num">3</div>
+            <div class="check-text"><strong>Юридична чистота</strong><p>Перевірка документів, власників, обтяжень та арештів</p></div>
+          </div>
+          <div class="check-step">
+            <div class="check-num">4</div>
+            <div class="check-text"><strong>Публікація</strong><p>Тільки перевірені авто потрапляють на канал IS AUTO</p></div>
+          </div>
+        </div>
+
+        <!-- SOLD RECENTLY -->
+        <div class="section-header"><h3>Нещодавно продано</h3></div>
+        <div class="sold-list" id="sold-list"></div>
+
+        <!-- CTA -->
+        <div class="cta-block">
+          <p class="cta-eyebrow">Є питання?</p>
+          <h3 class="cta-title">Написати менеджеру IS AUTO</h3>
+          <p class="cta-desc">Публікація авто, автовикуп, підбір — все через @isauto1</p>
+          <button class="cta-btn" data-action="contact">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.787 23.213l4.179-1.497A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.894 16.54c-.246.69-1.22 1.26-1.99 1.426-.53.113-1.22.203-3.55-.762-2.98-1.23-4.9-4.26-5.05-4.46-.146-.2-1.22-1.626-1.22-3.1 0-1.474.77-2.196 1.044-2.498.246-.27.536-.338.714-.338l.514.01c.165.007.386-.063.603.46.246.59.836 2.044.91 2.19.073.148.12.32.024.514-.09.196-.135.317-.27.49-.135.17-.285.38-.406.51-.136.135-.277.28-.12.548.158.27.7 1.154 1.503 1.87 1.033.92 1.904 1.205 2.174 1.34.27.135.427.112.585-.067.16-.18.68-.794.862-1.066.18-.27.36-.225.607-.135.247.09 1.57.74 1.84.875.27.135.45.202.516.314.065.112.065.65-.18 1.34z"/></svg>
+            Написати в Telegram
+          </button>
+        </div>
+
       </section>
-    </section>
 
-    <!-- FAVORITES SCREEN -->
-    <section class="screen" id="favorites-screen" data-screen="favorites">
-      <section class="screen-title">
-        <p class="eyebrow">Избранное</p>
-        <h1>Ваши авто</h1>
+      <!-- ===== CATALOG ===== -->
+      <section class="screen" id="screen-catalog" data-screen="catalog">
+        <div class="screen-title-block">
+          <h1>Каталог авто</h1>
+          <p class="screen-subtitle" id="catalog-count">Актуальні оголошення</p>
+        </div>
+
+        <div class="catalog-search-wrap">
+          <div class="search-field" style="position:relative">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input id="catalog-search" type="text" placeholder="Марка, модель, рік..." autocomplete="off" />
+            <button class="search-clear" id="catalog-search-clear" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <!-- Autocomplete dropdown -->
+            <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+          </div>
+          <button class="filter-pill" data-nav="filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- SORT PILLS -->
+        <div class="sort-pills-row" id="sort-pills">
+          <button class="sort-pill active" data-sort="new">Нові</button>
+          <button class="sort-pill" data-sort="price-asc">Дешевші</button>
+          <button class="sort-pill" data-sort="price-desc">Дорожчі</button>
+          <button class="sort-pill" data-sort="mileage-low">Малий пробіг</button>
+          <button class="sort-pill" data-sort="year-new">Новіші роки</button>
+        </div>
+
+        <div class="chips-row" id="brand-chips">
+          <button class="chip active" data-brand="all">Всі</button>
+          <button class="chip" data-brand="BMW">BMW</button>
+          <button class="chip" data-brand="Mercedes">Mercedes</button>
+          <button class="chip" data-brand="Audi">Audi</button>
+          <button class="chip" data-brand="Porsche">Porsche</button>
+        </div>
+
+        <!-- VIEW TOGGLE -->
+        <div class="view-toggle-row">
+          <button class="view-toggle-btn active" id="view-grid" aria-label="Сітка 3 колонки">
+            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/><rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg>
+          </button>
+          <button class="view-toggle-btn" id="view-list" aria-label="Список">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="5" rx="1"/><rect x="3" y="11" width="18" height="5" rx="1"/><rect x="3" y="18" width="18" height="5" rx="1"/></svg>
+          </button>
+        </div>
+
+        <!-- PULL TO REFRESH -->
+        <div class="pull-refresh" id="pull-refresh">
+          <div class="pull-refresh-icon" id="pull-refresh-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </div>
+          <span>Оновити</span>
+        </div>
+
+        <div class="catalog-grid" id="catalog-grid"></div>
+
+        <div class="empty-state" id="catalog-empty" style="display:none">
+          <div class="empty-icon">🔍</div>
+          <h3>Нічого не знайдено</h3>
+          <p>Спробуйте змінити фільтри або пошуковий запит</p>
+          <button class="empty-reset" data-action="reset-filters">Скинути фільтри</button>
+        </div>
       </section>
 
-      <section class="catalog-list" id="favorites-list"></section>
+      <!-- ===== DETAILS ===== -->
+      <section class="screen" id="screen-details" data-screen="details">
 
-      <section class="empty-state" id="favorites-empty">
-        <span>♡</span>
-        <h2>Пока пусто</h2>
-        <p>Добавляйте автомобили в избранное, чтобы быстро вернуться к ним.</p>
+        <!-- GALLERY -->
+        <div class="gallery" id="details-gallery">
+          <div class="gallery-slides" id="gallery-slides"></div>
+          <div class="gallery-dots" id="gallery-dots"></div>
+          <div class="gallery-counter" id="gallery-counter">1 / 1</div>
+          <button class="details-fav-btn" id="details-fav-btn" aria-label="В обране">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <div class="details-status-badge" id="details-status-badge">В наявності</div>
+          <div class="details-views-badge" id="details-views-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span id="details-views-count">0</span>
+          </div>
+        </div>
+
+        <div class="details-body">
+          <div class="details-head">
+            <div>
+              <h1 id="details-title">BMW X5</h1>
+              <p id="details-meta" class="details-meta-text">2020 · 79 000 км · Одеса</p>
+            </div>
+            <div class="details-price-wrap">
+              <div class="details-price" id="details-price">$45 900</div>
+              <div class="details-trade-badge" id="details-trade-badge" style="display:none">Торг</div>
+            </div>
+          </div>
+
+          <div class="details-quick-specs" id="details-quick-specs">
+            <div class="quick-spec"><span>Рік</span><strong id="dq-year">—</strong></div>
+            <div class="quick-spec"><span>Пробіг</span><strong id="dq-mileage">—</strong></div>
+            <div class="quick-spec"><span>Двигун</span><strong id="dq-engine">—</strong></div>
+            <div class="quick-spec"><span>Привід</span><strong id="dq-drive">—</strong></div>
+          </div>
+
+          <div class="details-section">
+            <h2>Характеристики</h2>
+            <div class="spec-table" id="details-spec-table"></div>
+          </div>
+
+          <div class="details-section" id="details-equip-section">
+            <h2>Комплектація</h2>
+            <div class="equip-tags" id="details-equip"></div>
+          </div>
+
+          <div class="details-section">
+            <h2>Опис</h2>
+            <p class="details-desc" id="details-desc">—</p>
+          </div>
+
+          <div class="details-vin-row" id="details-vin-row" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+            <span>VIN перевірено: <strong id="details-vin">—</strong></span>
+            <button class="copy-vin-btn" id="copy-vin-btn" aria-label="Скопіювати VIN">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+
+          <div class="details-contact-block">
+            <p class="contact-label">Продавець</p>
+            <div class="contact-row" id="details-contact-row"></div>
+          </div>
+
+          <div class="details-actions">
+            <button class="btn-primary" data-action="contact-about-car">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.787 23.213l4.179-1.497A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.894 16.54c-.246.69-1.22 1.26-1.99 1.426-.53.113-1.22.203-3.55-.762-2.98-1.23-4.9-4.26-5.05-4.46-.146-.2-1.22-1.626-1.22-3.1 0-1.474.77-2.196 1.044-2.498.246-.27.536-.338.714-.338l.514.01c.165.007.386-.063.603.46.246.59.836 2.044.91 2.19.073.148.12.32.024.514-.09.196-.135.317-.27.49-.135.17-.285.38-.406.51-.136.135-.277.28-.12.548.158.27.7 1.154 1.503 1.87 1.033.92 1.904 1.205 2.174 1.34.27.135.427.112.585-.067.16-.18.68-.794.862-1.066.18-.27.36-.225.607-.135.247.09 1.57.74 1.84.875.27.135.45.202.516.314.065.112.065.65-.18 1.34z"/></svg>
+              Написати менеджеру
+            </button>
+            <button class="btn-call" id="details-call-btn" style="display:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Зателефонувати
+            </button>
+            <button class="btn-secondary" data-action="share-car">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              Поділитися
+            </button>
+          </div>
+
+          <!-- VIDEO REVIEW -->
+          <div class="details-section" id="details-video-section" style="display:none">
+            <h2>Відеоогляд</h2>
+            <div class="video-player-wrap" id="video-player-wrap">
+              <video id="details-video" class="details-video" controls playsinline preload="metadata">
+                <source id="details-video-src" src="" type="video/mp4" />
+                Ваш браузер не підтримує відео.
+              </video>
+              <button class="video-play-overlay" id="video-play-overlay">
+                <div class="video-play-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- SIMILAR CARS -->
+          <div class="details-section" id="similar-section">
+            <h2>Схожі авто</h2>
+            <div class="cars-scroll" id="similar-cars"></div>
+          </div>
+        </div>
       </section>
-    </section>
 
-    <!-- FILTERS SCREEN -->
-    <section class="screen" id="filters-screen" data-screen="filters">
-      <section class="screen-title">
-        <p class="eyebrow">Фильтры</p>
-        <h1>Подберите авто</h1>
+      <!-- ===== FAVORITES ===== -->
+      <section class="screen" id="screen-favorites" data-screen="favorites">
+        <div class="screen-title-block">
+          <h1>Обране</h1>
+          <p class="screen-subtitle">Збережені автомобілі</p>
+        </div>
+        <div class="catalog-grid" id="favorites-grid"></div>
+        <div class="empty-state" id="favorites-empty" style="display:none">
+          <div class="empty-icon">♡</div>
+          <h3>Поки порожньо</h3>
+          <p>Додавайте авто в обране, щоб швидко повернутися до них</p>
+          <button class="empty-reset" data-nav="catalog">До каталогу</button>
+        </div>
       </section>
 
-      <form class="form-card" id="filters-form">
-        <label class="field">
-          <span>Марка</span>
-          <select id="filter-brand">
-            <option value="all">Любая</option>
+      <!-- ===== FILTERS ===== -->
+      <section class="screen" id="screen-filters" data-screen="filters">
+        <div class="screen-title-block">
+          <h1>Фільтри</h1>
+          <p class="screen-subtitle">Підберіть авто під себе</p>
+        </div>
+        <form class="ios-form" id="filters-form">
+          <div class="form-group">
+            <label class="form-label">Марка</label>
+            <select id="filter-brand" class="ios-select">
+              <option value="all">Будь-яка</option>
+              <option value="BMW">BMW</option>
+              <option value="Mercedes">Mercedes-Benz</option>
+              <option value="Audi">Audi</option>
+              <option value="Porsche">Porsche</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Ціна від, $</label>
+              <input id="filter-price-min" type="number" class="ios-input" placeholder="0" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ціна до, $</label>
+              <input id="filter-price-max" type="number" class="ios-input" placeholder="100 000" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Рік від</label>
+              <input id="filter-year-min" type="number" class="ios-input" placeholder="2015" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Рік до</label>
+              <input id="filter-year-max" type="number" class="ios-input" placeholder="2024" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Пробіг до, км</label>
+            <input id="filter-mileage" type="number" class="ios-input" placeholder="200 000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Паливо</label>
+            <select id="filter-fuel" class="ios-select">
+              <option value="all">Будь-яке</option>
+              <option value="Бензин">Бензин</option>
+              <option value="Дизель">Дизель</option>
+              <option value="Гібрид">Гібрид</option>
+              <option value="Електро">Електро</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Показати авто</button>
+            <button type="button" class="btn-ghost" data-action="reset-filters">Скинути</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== SELL ===== -->
+      <section class="screen" id="screen-sell" data-screen="sell">
+        <div class="screen-title-block"><h1>Продати авто</h1><p class="screen-subtitle">Розмістіть оголошення через IS AUTO</p></div>
+        <div class="info-card"><div class="info-card-icon">📢</div><div><strong>65 000+ покупців</strong><p>Ваше авто побачать тисячі зацікавлених людей щодня</p></div></div>
+        <form class="ios-form" id="sell-form">
+          <div class="form-group"><label class="form-label">Марка та модель *</label><input name="car" type="text" class="ios-input" placeholder="Наприклад: BMW X5 2020" required /></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Рік *</label><input name="year" type="number" class="ios-input" placeholder="2020" required /></div>
+            <div class="form-group"><label class="form-label">Пробіг, км *</label><input name="mileage" type="number" class="ios-input" placeholder="80 000" required /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Двигун</label><input name="engine" type="text" class="ios-input" placeholder="3.0 бензин / 2.0 дизель" /></div>
+          <div class="form-group"><label class="form-label">Ціна, $ *</label><input name="price" type="text" class="ios-input" placeholder="45 000" required /></div>
+          <div class="form-group"><label class="form-label">Місто</label><input name="city" type="text" class="ios-input" placeholder="Одеса, Київ, Дніпро..." /></div>
+          <div class="form-group"><label class="form-label">Опис (комплектація, стан)</label><textarea name="description" class="ios-textarea" rows="4" placeholder="Опишіть комплектацію, стан, особливості..."></textarea></div>
+          <div class="form-group"><label class="form-label">Ваш Telegram або телефон *</label><input name="contact" type="text" class="ios-input" placeholder="@username або +380..." required /></div>
+          <button type="submit" class="btn-primary">Надіслати заявку</button>
+        </form>
+      </section>
+
+      <!-- ===== SEARCH CAR ===== -->
+      <section class="screen" id="screen-search-car" data-screen="search-car">
+        <div class="screen-title-block"><h1>Знайти авто</h1><p class="screen-subtitle">Опишіть що шукаєте — знайдемо</p></div>
+        <div class="info-card"><div class="info-card-icon">🕵️</div><div><strong>#Пошук авто</strong><p>Ваш запит побачать продавці з усієї України</p></div></div>
+        <form class="ios-form" id="search-car-form">
+          <div class="form-group"><label class="form-label">Що шукаєте? *</label><input name="car" type="text" class="ios-input" placeholder="BMW X5, Mercedes C43, Audi RS5..." required /></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Бюджет від, $</label><input name="budget_min" type="number" class="ios-input" placeholder="20 000" /></div>
+            <div class="form-group"><label class="form-label">Бюджет до, $ *</label><input name="budget_max" type="number" class="ios-input" placeholder="50 000" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Рік від</label><input name="year_from" type="number" class="ios-input" placeholder="2018" /></div>
+            <div class="form-group"><label class="form-label">Пробіг до, км</label><input name="mileage_max" type="number" class="ios-input" placeholder="100 000" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Додаткові вимоги</label><textarea name="requirements" class="ios-textarea" rows="3" placeholder="Колір, комплектація, привід, без аварій..."></textarea></div>
+          <div class="form-group"><label class="form-label">Ваш Telegram *</label><input name="contact" type="text" class="ios-input" placeholder="@username" required /></div>
+          <button type="submit" class="btn-primary">Опублікувати пошук</button>
+        </form>
+      </section>
+
+      <!-- ===== BUYOUT ===== -->
+      <section class="screen" id="screen-buyout" data-screen="buyout">
+        <div class="screen-title-block"><h1>Автовикуп</h1><p class="screen-subtitle">Швидко та вигідно продамо ваше авто</p></div>
+        <div class="info-card"><div class="info-card-icon">⚡</div><div><strong>Швидкий викуп</strong><p>Оцінка протягом 1 години, гроші в день угоди</p></div></div>
+        <div class="buyout-steps">
+          <div class="buyout-step"><div class="step-num">1</div><div class="step-text"><strong>Залишаєте заявку</strong><p>Вказуєте марку, рік, пробіг</p></div></div>
+          <div class="buyout-step"><div class="step-num">2</div><div class="step-text"><strong>Отримуєте оцінку</strong><p>Менеджер зв'яжеться протягом 1 год</p></div></div>
+          <div class="buyout-step"><div class="step-num">3</div><div class="step-text"><strong>Отримуєте гроші</strong><p>Оформлення та оплата в день угоди</p></div></div>
+        </div>
+        <form class="ios-form" id="buyout-form">
+          <div class="form-group"><label class="form-label">Марка та модель *</label><input name="car" type="text" class="ios-input" placeholder="BMW X5 2018" required /></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Рік *</label><input name="year" type="number" class="ios-input" placeholder="2018" required /></div>
+            <div class="form-group"><label class="form-label">Пробіг, км *</label><input name="mileage" type="number" class="ios-input" placeholder="120 000" required /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Очікувана ціна, $</label><input name="price" type="text" class="ios-input" placeholder="30 000" /></div>
+          <div class="form-group"><label class="form-label">Ваш телефон або Telegram *</label><input name="contact" type="text" class="ios-input" placeholder="+380... або @username" required /></div>
+          <button type="submit" class="btn-primary">Отримати оцінку</button>
+        </form>
+      </section>
+
+      <!-- ===== PROFILE ===== -->
+      <section class="screen" id="screen-profile" data-screen="profile">
+        <div class="screen-title-block"><h1>Профіль</h1></div>
+        <div class="profile-user-card" id="profile-user-card">
+          <div class="profile-avatar" id="profile-avatar">?</div>
+          <div class="profile-user-info">
+            <strong id="profile-name">Гість</strong>
+            <span id="profile-username">Відкрийте в Telegram</span>
+          </div>
+        </div>
+        <div class="profile-menu">
+          <button class="profile-menu-item" data-nav="favorites">
+            <div class="pmenu-icon pmenu-icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <span>Обране</span><span class="pmenu-count" id="pmenu-fav-count">0</span>
+            <svg class="pmenu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <button class="profile-menu-item" data-nav="sell">
+            <div class="pmenu-icon pmenu-icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7-7 7 7"/></svg></div>
+            <span>Продати авто</span>
+            <svg class="pmenu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <button class="profile-menu-item" data-nav="search-car">
+            <div class="pmenu-icon pmenu-icon-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            <span>Знайти авто</span>
+            <svg class="pmenu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <button class="profile-menu-item" data-nav="buyout">
+            <div class="pmenu-icon pmenu-icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <span>Автовикуп</span>
+            <svg class="pmenu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="profile-about">
+          <div class="about-logo"><span class="about-is">IS</span><span class="about-auto">AUTO</span></div>
+          <p class="about-desc">Найбільший Telegram-канал з продажу авто в Україні. 65 000+ підписників, щодня нові оголошення.</p>
+          <div class="about-contacts">
+            <a class="about-contact-btn" href="https://t.me/isauto1" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.787 23.213l4.179-1.497A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.894 16.54c-.246.69-1.22 1.26-1.99 1.426-.53.113-1.22.203-3.55-.762-2.98-1.23-4.9-4.26-5.05-4.46-.146-.2-1.22-1.626-1.22-3.1 0-1.474.77-2.196 1.044-2.498.246-.27.536-.338.714-.338l.514.01c.165.007.386-.063.603.46.246.59.836 2.044.91 2.19.073.148.12.32.024.514-.09.196-.135.317-.27.49-.135.17-.285.38-.406.51-.136.135-.277.28-.12.548.158.27.7 1.154 1.503 1.87 1.033.92 1.904 1.205 2.174 1.34.27.135.427.112.585-.067.16-.18.68-.794.862-1.066.18-.27.36-.225.607-.135.247.09 1.57.74 1.84.875.27.135.45.202.516.314.065.112.065.65-.18 1.34z"/></svg>
+              @isauto1
+            </a>
+            <a class="about-contact-btn" href="tel:+380635744243">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +380 63 574 42 43
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /screens -->
+
+    <!-- BOTTOM NAV -->
+    <div class="tg-nav-wrap" id="bottom-nav">
+      <nav class="tg-nav">
+        <button class="tg-nav-item active" data-nav="home" aria-label="Головна">
+          <div class="tg-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <span>Головна</span>
+        </button>
+        <button class="tg-nav-item" data-nav="catalog" aria-label="Каталог">
+          <div class="tg-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <span>Каталог</span>
+        </button>
+        <button class="tg-nav-item tg-nav-center" data-action="contact" aria-label="Менеджер">
+          <div class="tg-nav-icon tg-nav-icon-center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.787 23.213l4.179-1.497A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.894 16.54c-.246.69-1.22 1.26-1.99 1.426-.53.113-1.22.203-3.55-.762-2.98-1.23-4.9-4.26-5.05-4.46-.146-.2-1.22-1.626-1.22-3.1 0-1.474.77-2.196 1.044-2.498.246-.27.536-.338.714-.338l.514.01c.165.007.386-.063.603.46.246.59.836 2.044.91 2.19.073.148.12.32.024.514-.09.196-.135.317-.27.49-.135.17-.285.38-.406.51-.136.135-.277.28-.12.548.158.27.7 1.154 1.503 1.87 1.033.92 1.904 1.205 2.174 1.34.27.135.427.112.585-.067.16-.18.68-.794.862-1.066.18-.27.36-.225.607-.135.247.09 1.57.74 1.84.875.27.135.45.202.516.314.065.112.065.65-.18 1.34z"/></svg></div>
+          <span>Менеджер</span>
+        </button>
+        <button class="tg-nav-item" data-nav="favorites" aria-label="Обране">
+          <div class="tg-nav-icon" style="position:relative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="tg-nav-badge" id="fav-badge" style="display:none">0</span>
+          </div>
+          <span>Обране</span>
+        </button>
+        <button class="tg-nav-item" data-nav="profile" aria-label="Профіль">
+          <div class="tg-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <span>Профіль</span>
+        </button>
+      </nav>
+    </div>
+
+  </div><!-- /app -->
+
+  <!-- FULLSCREEN GALLERY -->
+  <div class="fullscreen-gallery" id="fullscreen-gallery">
+    <button class="fullscreen-close" id="fullscreen-close" aria-label="Закрити">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="fullscreen-slides" id="fullscreen-slides"></div>
+    <div class="fullscreen-counter" id="fullscreen-counter">1 / 1</div>
+    <div class="fullscreen-dots" id="fullscreen-dots"></div>
+  </div>
+
+  <!-- HEART BURST CANVAS -->
+  <canvas class="heart-canvas" id="heart-canvas"></canvas>
+
+  <!-- NOTIFY MODAL -->
+  <div class="modal-overlay" id="notify-modal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-icon-wrap" style="background:linear-gradient(135deg,#007aff,#0055d4);box-shadow:0 8px 24px rgba(0,122,255,.35)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <h2 class="modal-title">Сповіщення про нові авто</h2>
+      <p class="modal-desc">Оберіть фільтр і наш бот надішле вам повідомлення коли з'явиться нове авто за вашими критеріями.</p>
+      <form class="ios-form" id="notify-form" style="width:100%;padding:0">
+        <div class="form-group">
+          <label class="form-label">Марка</label>
+          <select id="notify-brand" class="ios-select">
+            <option value="all">Будь-яка</option>
             <option value="BMW">BMW</option>
-            <option value="Mercedes">Mercedes</option>
+            <option value="Mercedes">Mercedes-Benz</option>
             <option value="Audi">Audi</option>
             <option value="Porsche">Porsche</option>
           </select>
-        </label>
-
-        <label class="field">
-          <span>Бюджет до, $</span>
-          <input id="filter-price" type="number" placeholder="70000" />
-        </label>
-
-        <label class="field">
-          <span>Год от</span>
-          <input id="filter-year" type="number" placeholder="2020" />
-        </label>
-
-        <label class="field">
-          <span>Пробег до, км</span>
-          <input id="filter-mileage" type="number" placeholder="50000" />
-        </label>
-
-        <button class="primary-button" type="submit">
-          Показать авто
-        </button>
-
-        <button class="secondary-button" type="button" data-action="reset-filters">
-          Сбросить фильтры
-        </button>
-      </form>
-    </section>
-
-    <!-- SELL SCREEN -->
-    <section class="screen" id="sell-screen" data-screen="sell">
-      <section class="screen-title">
-        <p class="eyebrow">Продажа</p>
-        <h1>Продать авто</h1>
-      </section>
-
-      <form class="form-card lead-form" id="sell-form">
-        <label class="field">
-          <span>Марка и модель</span>
-          <input name="car" type="text" placeholder="Например: BMW X5" required />
-        </label>
-
-        <label class="field">
-          <span>Год выпуска</span>
-          <input name="year" type="number" placeholder="2020" required />
-        </label>
-
-        <label class="field">
-          <span>Пробег</span>
-          <input name="mileage" type="number" placeholder="30000" required />
-        </label>
-
-        <label class="field">
-          <span>Желаемая цена</span>
-          <input name="price" type="text" placeholder="$50 000" />
-        </label>
-
-        <label class="field">
-          <span>Ваш телефон</span>
-          <input name="phone" type="tel" placeholder="+380..." required />
-        </label>
-
-        <button class="primary-button" type="submit">
-          Отправить заявку
-        </button>
-      </form>
-    </section>
-
-    <!-- TRADE-IN SCREEN -->
-    <section class="screen" id="tradein-screen" data-screen="tradein">
-      <section class="screen-title">
-        <p class="eyebrow">Обмен</p>
-        <h1>Trade-in</h1>
-      </section>
-
-      <form class="form-card lead-form" id="tradein-form">
-        <label class="field">
-          <span>Ваш автомобиль</span>
-          <input name="oldCar" type="text" placeholder="BMW X5 2018" required />
-        </label>
-
-        <label class="field">
-          <span>Что хотите взамен</span>
-          <input name="newCar" type="text" placeholder="Mercedes GLE, Audi Q7..." />
-        </label>
-
-        <label class="field">
-          <span>Доплата / бюджет</span>
-          <input name="budget" type="text" placeholder="$20 000" />
-        </label>
-
-        <label class="field">
-          <span>Телефон</span>
-          <input name="phone" type="tel" placeholder="+380..." required />
-        </label>
-
-        <button class="primary-button" type="submit">
-          Рассчитать обмен
-        </button>
-      </form>
-    </section>
-
-    <!-- SELECTION SCREEN -->
-    <section class="screen" id="selection-screen" data-screen="selection">
-      <section class="screen-title">
-        <p class="eyebrow">Подбор</p>
-        <h1>Найдём авто под вас</h1>
-      </section>
-
-      <form class="form-card lead-form" id="selection-form">
-        <label class="field">
-          <span>Бюджет</span>
-          <input name="budget" type="text" placeholder="$50 000 — $80 000" required />
-        </label>
-
-        <label class="field">
-          <span>Какие авто нравятся</span>
-          <input name="cars" type="text" placeholder="BMW, Mercedes, Porsche..." />
-        </label>
-
-        <label class="field">
-          <span>Цель покупки</span>
-          <select name="goal">
-            <option value="daily">На каждый день</option>
-            <option value="family">Для семьи</option>
-            <option value="business">Для бизнеса</option>
-            <option value="premium">Премиум / статус</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span>Телефон</span>
-          <input name="phone" type="tel" placeholder="+380..." required />
-        </label>
-
-        <button class="primary-button" type="submit">
-          Начать подбор
-        </button>
-      </form>
-    </section>
-
-    <!-- LEAD SCREEN -->
-    <section class="screen" id="lead-screen" data-screen="lead">
-      <section class="screen-title">
-        <p class="eyebrow">Заявка</p>
-        <h1>Связаться с менеджером</h1>
-      </section>
-
-      <form class="form-card lead-form" id="lead-form">
-        <label class="field">
-          <span>Имя</span>
-          <input name="name" type="text" placeholder="Ваше имя" required />
-        </label>
-
-        <label class="field">
-          <span>Телефон</span>
-          <input name="phone" type="tel" placeholder="+380..." required />
-        </label>
-
-        <label class="field">
-          <span>Комментарий</span>
-          <textarea name="comment" rows="4" placeholder="Например: хочу посмотреть BMW X5"></textarea>
-        </label>
-
-        <button class="primary-button" type="submit">
-          Отправить
-        </button>
-      </form>
-    </section>
-
-    <!-- PROFILE SCREEN -->
-    <section class="screen" id="profile-screen" data-screen="profile">
-      <section class="profile-card">
-        <div class="profile-avatar">
-          IS
         </div>
-
-        <h1>Гость</h1>
-        <p>Telegram Mini App</p>
-
-        <button class="primary-button" data-screen-link="lead">
-          Связаться с IS AUTO
-        </button>
-      </section>
-
-      <section class="menu-list">
-        <button class="menu-row" data-screen-link="favorites">
-          <span>♡</span>
-          Избранное
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-screen-link="selection">
-          <span>⌕</span>
-          Подбор авто
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-screen-link="sell">
-          <span>⌘</span>
-          Продать авто
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-action="open-instagram">
-          <span>◎</span>
-          Instagram
-          <b>→</b>
-        </button>
-      </section>
-    </section>
-
-    <!-- SIDE MENU -->
-    <aside class="side-menu" id="side-menu">
-      <div class="side-menu-panel">
-        <div class="side-menu-header">
-          <div class="logo">
-            <span class="logo-red">IS</span>
-            <span class="logo-black">AUTO</span>
-            <span class="logo-city">ODESSA</span>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Ціна до, $</label>
+            <input id="notify-price" type="number" class="ios-input" placeholder="80 000" />
           </div>
-
-          <button class="icon-button" data-action="close-menu">
-            ×
-          </button>
+          <div class="form-group">
+            <label class="form-label">Рік від</label>
+            <input id="notify-year" type="number" class="ios-input" placeholder="2019" />
+          </div>
         </div>
-
-        <button class="menu-row" data-screen-link="catalog">
-          Каталог авто
-          <b>→</b>
+        <button type="submit" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Увімкнути сповіщення
         </button>
-
-        <button class="menu-row" data-screen-link="selection">
-          Подбор авто
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-screen-link="sell">
-          Продать авто
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-screen-link="tradein">
-          Trade-in
-          <b>→</b>
-        </button>
-
-        <button class="menu-row" data-screen-link="favorites">
-          Избранное
-          <b>→</b>
-        </button>
-      </div>
-    </aside>
-
-    <!-- SUCCESS MODAL -->
-    <div class="modal" id="success-modal">
-      <div class="modal-card">
-        <button class="modal-close" data-action="close-modal">
-          ×
-        </button>
-
-        <div class="modal-icon">
-          ✓
-        </div>
-
-        <h2>Заявка отправлена</h2>
-
-        <p>
-          Менеджер IS AUTO свяжется с вами в ближайшее время.
-        </p>
-
-        <button class="primary-button" data-action="close-modal">
-          Отлично
-        </button>
-      </div>
+        <button type="button" class="btn-ghost" data-action="close-notify-modal">Скасувати</button>
+      </form>
     </div>
+  </div>
 
-    <!-- BOTTOM CTA -->
-    <button class="main-cta" data-screen-link="selection">
-      Подобрать авто
-    </button>
+  <!-- ADMIN PANEL SCREEN (outside .app so it overlays everything) -->
+  <div class="admin-overlay" id="admin-overlay">
+    <div class="admin-panel" id="admin-panel">
+      <div class="admin-header">
+        <h2>Адмін-панель IS AUTO</h2>
+        <button class="admin-close" id="admin-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
 
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-nav">
-      <button class="nav-item active" data-screen-link="home">
-        <span>⌂</span>
-        Главная
-      </button>
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="add">Додати авто</button>
+        <button class="admin-tab" data-tab="list">Список (всі)</button>
+        <button class="admin-tab" data-tab="push">Пуш-розсилка</button>
+      </div>
 
-      <button class="nav-item" data-screen-link="catalog">
-        <span>▱</span>
-        Каталог
-      </button>
+      <!-- TAB: ADD CAR -->
+      <div class="admin-tab-content active" id="admin-tab-add">
+        <form class="ios-form" id="admin-add-form" style="padding:0">
+          <div class="form-group">
+            <label class="form-label">Марка</label>
+            <select name="brand" class="ios-select" id="admin-brand">
+              <option value="BMW">BMW</option>
+              <option value="Mercedes">Mercedes-Benz</option>
+              <option value="Audi">Audi</option>
+              <option value="Porsche">Porsche</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Назва (модель) *</label>
+            <input name="model" type="text" class="ios-input" placeholder="X5 40i" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Рік *</label>
+              <input name="year" type="number" class="ios-input" placeholder="2021" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Пробіг, км *</label>
+              <input name="mileage" type="number" class="ios-input" placeholder="50000" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ціна, $ *</label>
+            <input name="price" type="number" class="ios-input" placeholder="45000" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Двигун</label>
+              <input name="engine" type="text" class="ios-input" placeholder="3.0 бензин" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Паливо</label>
+              <select name="fuel" class="ios-select">
+                <option value="Бензин">Бензин</option>
+                <option value="Дизель">Дизель</option>
+                <option value="Гібрид">Гібрид</option>
+                <option value="Електро">Електро</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Привід</label>
+              <input name="drive" type="text" class="ios-input" placeholder="Повний привід" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Місто</label>
+              <input name="city" type="text" class="ios-input" placeholder="Одеса" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Комплектація (через кому)</label>
+            <input name="equipment" type="text" class="ios-input" placeholder="Панорама, Камери 360, CarPlay" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Опис</label>
+            <textarea name="description" class="ios-textarea" rows="3" placeholder="Опишіть авто..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон продавця</label>
+            <input name="phone" type="tel" class="ios-input" placeholder="+380..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Фото (URL або завантажити)</label>
+            <input name="imageUrl" type="url" class="ios-input" placeholder="https://..." />
+            <div class="admin-upload-area" id="admin-photo-upload">
+              <input type="file" id="admin-photo-file" accept="image/*" multiple style="display:none" />
+              <button type="button" class="admin-upload-btn" id="admin-photo-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Вибрати фото
+              </button>
+              <div class="admin-photo-preview" id="admin-photo-preview"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Відеоогляд</label>
+            <div class="admin-upload-area" id="admin-video-upload">
+              <input type="file" id="admin-video-file" accept="video/mp4,video/webm,video/mov" style="display:none" />
+              <button type="button" class="admin-upload-btn" id="admin-video-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                Завантажити відео
+              </button>
+              <div class="admin-video-info" id="admin-video-info"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Статус</label>
+            <select name="status" class="ios-select">
+              <option value="В наявності">В наявності</option>
+              <option value="Бронь">Бронь</option>
+              <option value="Продано">Продано</option>
+            </select>
+          </div>
+          <label class="admin-toggle-row">
+            <span>Торг можливий</span>
+            <input type="checkbox" name="canTrade" id="admin-can-trade" class="admin-toggle-input" />
+            <div class="admin-toggle"></div>
+          </label>
+          <button type="submit" class="btn-primary">Додати авто в каталог</button>
+        </form>
+      </div>
 
-      <button class="nav-item" data-screen-link="favorites">
-        <span>♡</span>
-        Избранное
-      </button>
+      <!-- TAB: LIST -->
+      <div class="admin-tab-content" id="admin-tab-list">
+        <div class="admin-cars-list" id="admin-cars-list"></div>
+      </div>
 
-      <button class="nav-item" data-screen-link="profile">
-        <span>◎</span>
-        Профиль
-      </button>
-    </nav>
+      <!-- TAB: PUSH -->
+      <div class="admin-tab-content" id="admin-tab-push">
+        <div class="admin-push-info">
+          <div class="admin-push-icon">🔔</div>
+          <h3>Пуш-розсилка</h3>
+          <p>Надішліть повідомлення всім підписникам бота через Telegram</p>
+        </div>
+        <form class="ios-form" id="admin-push-form" style="padding:0">
+          <div class="form-group">
+            <label class="form-label">Заголовок *</label>
+            <input name="title" type="text" class="ios-input" placeholder="🔥 Нове авто в IS AUTO!" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Повідомлення *</label>
+            <textarea name="message" class="ios-textarea" rows="4" placeholder="BMW X5 2021 — $45 900. Пневмопідвіска, камери 360, рестайлінг..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Цільова аудиторія</label>
+            <select name="target" class="ios-select">
+              <option value="all">Всі підписники</option>
+              <option value="bmw">Любителі BMW</option>
+              <option value="mercedes">Любителі Mercedes</option>
+              <option value="audi">Любителі Audi</option>
+              <option value="porsche">Любителі Porsche</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Надіслати розсилку
+          </button>
+        </form>
+      </div>
 
-  </main>
+    </div>
+  </div>
+
+  <!-- INFINITE SCROLL SENTINEL -->
+  <div id="infinite-sentinel" style="height:1px"></div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-icon-wrap modal-icon-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h2 class="modal-title">Заявку надіслано!</h2>
+      <p class="modal-desc">Менеджер IS AUTO зв'яжеться з вами найближчим часом через Telegram.</p>
+      <button class="btn-primary" data-action="close-modal">Чудово!</button>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
